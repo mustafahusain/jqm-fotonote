@@ -26,7 +26,7 @@
 		<script src="js/lib/jquery.mobile-1.2.0.js"></script>
 		<script id="photonoteTempl" type="text/x-handlebars-template">
 			{{#each this}}
-			<li>		
+			<li data-noteid={{id}}>		
 				<a href="#detail" data-transition="slide">
 					<h1>{{title}}</h1>
 					<img src={{imgurl}}/>
@@ -35,12 +35,23 @@
 			</li>
            {{/each}}   
         </script>
+		<script id="detailnoteTempl" type="text/x-handlebars-template">
+			<div style="text-align:center;margin:20px;">
+				<h2>{{title}}</h2>
+			</div>
+			<div style="text-align:center;margin:20px;">
+				<img src={{imgurl}} style="width:auto;height:200px;"></img>
+			</div>
+			<div class="well" style="text-align:center;margin:20px;">
+				<p>{{comment}}</p>
+			</div>
+		</script>
         <title>Photo Note</title>
 	</head>
     <body>
 	
 	<div data-role="page" id="home">
-		<div data-role="header">
+		<div data-role="header" data-position="fixed">
     		<h1>Photo Note</h1>
 			<a href="#editor" data-icon="plus" class="ui-btn-right" data-transition="turn">New</a>
     	</div><!-- /header -->
@@ -62,10 +73,9 @@
 	</div>
 	
 	<div data-role="page" id="info">
-
-		<div data-role="header">
-		<h1>About</h1>
-		<a href="#home" data-icon="home" class="ui-btn-left" data-transition="flip" data-direction="reverse" data-iconpos="notext">Add</a>
+		<div data-role="header" data-position="fixed">
+			<h1>About</h1>
+			<a href="#home" data-icon="home" class="ui-btn-left" data-transition="flip" data-direction="reverse">Home</a>
 		</div>
 
 		<div data-role="content" class="ui-body-text">
@@ -74,44 +84,32 @@
 		</div>
 
 		<div data-role="footer" data-position="fixed">
-		<h4>Masti Inc. Copyright 2012.</h4>
+			<h4>Masti Inc. Copyright 2012.</h4>
 		</div>
-
 	</div>
 
-	<div data-role="page" id="detail" data-add-back-btn="true">
-
-		<div data-role="header">
-		<h1>Photo Note Details</h1>
-		<!-- <a href="#home" data-icon="home" class="ui-btn-left" data-transition="slide" data-direction="reverse" data-iconpos="notext">Add</a> -->
+	<div data-role="page" id="detail">
+		<div data-role="header" data-position="fixed">
+			<h1>Photo Note Details</h1>
+			<a id="backtolist" href="#home" data-icon="arrow-l" class="ui-btn-left" data-direction="reverse" data-transition="slide">Back</a>
 		</div>
 
 		<div data-role="content" class="ui-body-text">
-			<div style="text-align:center;margin:20px;">
-				<h2>Title Placeholder</h2>
-			</div>
-			<div style="text-align:center;margin:20px;">
-                <img id="uploadedPic" src="img/logo.png" style="width:auto;height:200px;"></img>
-            </div>
-			<div>
-				<textarea placeholder="Comments go in here" ></textarea>
-			</div>
 		</div>
 
 		<div data-role="footer" data-position="fixed">
-		<h4>Masti Inc. Copyright 2012.</h4>
+			<h4>Masti Inc. Copyright 2012.</h4>
 		</div>
-
 	</div>
 	
 	<div data-role="page" id="editor">
-		<div data-role="header">
-		<h1>Editor</h1>
-		<a href="#home" data-icon="delete" class="ui-btn-left" data-direction="reverse" data-transition="turn">Cancel</a>
+		<div data-role="header" data-position="fixed">
+			<h1>Editor</h1>
+			<a href="#home" data-icon="delete" class="ui-btn-left" data-direction="reverse" data-transition="turn">Cancel</a>
 		</div>
 
 		<div data-role="content" class="ui-body-text">
-			
+		
 			<div data-role="fieldcontain">
 				<label for="title">Title:</label>
 				<input type="text" name="title" id="title" />
@@ -119,11 +117,11 @@
 
 			<div data-role="fieldcontain">
 				<div style="text-align:center">
-					<a id="takePhotoButton" data-role="button" data-theme="e" data-icon="myapp-camera" data-inline="true" data-mini="true">Take Photo</a>
+					<a href="#popupDialog" data-transition="slideup" data-role="button" data-theme="e" data-icon="myapp-camera" data-inline="true" data-mini="true" data-rel="popup" data-position-to="window">Take Photo</a>
 				</div>
 				<div style="text-align:center;margin:20px;">
-                    <img id="cameraPic" src="img/logo.png" style="width:auto;height:200px;"></img>
-                </div>
+					<img id="cameraPic" src="img/logo.png" style="width:auto;height:200px;"></img>
+				</div>
 			</div>
 
 			<div data-role="fieldcontain">
@@ -133,8 +131,19 @@
 
 		</div>
 
-		<div data-role="footer" data-position="fixed" class="ui-bar" style="text-align:center">
+		<div data-role="footer" class="ui-bar" style="text-align:center">
 			<a id="addphotonote" data-role="button" data-icon="plus" style="margin: 0.4em; center: left" data-theme="e">Submit Photo Note</a>
+		</div>
+
+		<div data-role="popup" id="popupDialog" data-overlay-theme="a" data-theme="c" style="max-width:400px;" class="ui-corner-all">
+			<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+			<div data-role="header" data-theme="a" class="ui-corner-top">
+				<h1>Source</h1>
+			</div>
+			<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">				
+				<a id="takePhotoButton" data-role="button" data-theme="b">Camera</a>    
+				<a id="takeLibPhotoButton" data-role="button" data-theme="b">Choose Existing Picture</a>  
+			</div>
 		</div>
 	</div>
 		
