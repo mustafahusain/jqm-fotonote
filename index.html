@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="css/custom.css" />
+		<script>
+			var userAgent = navigator.userAgent + '';
+			if (userAgent.indexOf('iPhone') > -1) {
+				var mobile_system = 'iphone';
+			} else if (userAgent.indexOf('Android') > -1) {
+			  	var mobile_system = 'android';
+			} else {
+			  	var mobile_system = '';
+			}
+		</script>
+		<script type="text/javascript" src="cordova-2.2.0.js"></script>
+		<script src="js/lib/jquery-1.8.3.js"></script>
+		<!-- your scripts here -->
+		<script type="text/javascript" src="js/lib/handlebars-1.0.rc.1.js"></script>
+		<script src="js/app/app.js"></script>
+		<script src="js/app/bootstrap.js"></script>
+		<script src="js/lib/jquery.mobile-1.2.0.js"></script>
+		<script id="photonoteTempl" type="text/x-handlebars-template">
+			{{#each this}}
+			<li>		
+				<a href="#detail" data-transition="slide">
+					<h1>{{title}}</h1>
+					<img src={{imgurl}}/>
+					<p>{{comment}}</p>
+				</a>
+			</li>
+           {{/each}}   
+        </script>
+        <title>Photo Note</title>
+	</head>
+    <body>
+	
+	<div data-role="page" id="home">
+		<div data-role="header">
+    		<h1>Photo Note</h1>
+			<a href="#editor" data-icon="plus" class="ui-btn-right" data-transition="turn">New</a>
+    	</div><!-- /header -->
+
+		<div data-role="content">
+			<ul class="photonotes" data-role="listview" data-filter="true">
+			</ul>
+		</div>
+		
+		<div data-role="footer" data-position="fixed" data-id="thefooternav">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#info" data-icon="info" data-transition="flip">Info</a></li>
+					<li><a href="#" data-icon="star">Favs</a></li>
+					<li><a href="#" data-icon="gear">Setup</a></li>
+				</ul>
+			</div>
+    	</div><!-- /footer -->
+	</div>
+	
+	<div data-role="page" id="info">
+
+		<div data-role="header">
+		<h1>About</h1>
+		<a href="#home" data-icon="home" class="ui-btn-left" data-transition="flip" data-direction="reverse" data-iconpos="notext">Add</a>
+		</div>
+
+		<div data-role="content" class="ui-body-text">
+			<p>A simple Photo Journal App using Phonegap & Jquery Mobile.</p>
+			<p>Indulge in mobile programming and have some Masti!</p>
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+		<h4>Masti Inc. Copyright 2012.</h4>
+		</div>
+
+	</div>
+
+	<div data-role="page" id="detail" data-add-back-btn="true">
+
+		<div data-role="header">
+		<h1>Photo Note Details</h1>
+		<!-- <a href="#home" data-icon="home" class="ui-btn-left" data-transition="slide" data-direction="reverse" data-iconpos="notext">Add</a> -->
+		</div>
+
+		<div data-role="content" class="ui-body-text">
+			<div style="text-align:center;margin:20px;">
+				<h2>Title Placeholder</h2>
+			</div>
+			<div style="text-align:center;margin:20px;">
+                <img id="uploadedPic" src="img/logo.png" style="width:auto;height:200px;"></img>
+            </div>
+			<div>
+				<textarea placeholder="Comments go in here" ></textarea>
+			</div>
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+		<h4>Masti Inc. Copyright 2012.</h4>
+		</div>
+
+	</div>
+	
+	<div data-role="page" id="editor">
+		<div data-role="header">
+		<h1>Editor</h1>
+		<a href="#home" data-icon="delete" class="ui-btn-left" data-direction="reverse" data-transition="turn">Cancel</a>
+		</div>
+
+		<div data-role="content" class="ui-body-text">
+			
+			<div data-role="fieldcontain">
+				<label for="title">Title:</label>
+				<input type="text" name="title" id="title" />
+			</div>
+
+			<div data-role="fieldcontain">
+				<div style="text-align:center">
+					<a id="takePhotoButton" data-role="button" data-theme="e" data-icon="myapp-camera" data-inline="true" data-mini="true">Take Photo</a>
+				</div>
+				<div style="text-align:center;margin:20px;">
+                    <img id="cameraPic" src="img/logo.png" style="width:auto;height:200px;"></img>
+                </div>
+			</div>
+
+			<div data-role="fieldcontain">
+				<label for="comments">Your Comments:</label>
+				<textarea name="comments" id="comments"></textarea>
+			</div>
+
+		</div>
+
+		<div data-role="footer" data-position="fixed" class="ui-bar" style="text-align:center">
+			<a id="addphotonote" data-role="button" data-icon="plus" style="margin: 0.4em; center: left" data-theme="e">Submit Photo Note</a>
+		</div>
+	</div>
+		
+    </body>
+</html>

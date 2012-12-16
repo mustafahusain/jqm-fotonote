@@ -1,0 +1,17 @@
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+.ui-page { 
+	background-image: url(../img/carbon_fibre.png); /*#E4F2F1; Set background color of a page*/
+}
+
+.ui-body-text {
+	color: #C9C9C9 /*{c-body-color}*/;
+	text-shadow: 0 /*{c-body-shadow-x}*/ 0 /*{c-body-shadow-y}*/ 0 /*{c-body-shadow-radius}*/ white /*{c-body-shadow-color}*/;
+}
+
+.ui-icon-myapp-camera {
+	background-image: url(../img/app-icon-camera.png);
+}
