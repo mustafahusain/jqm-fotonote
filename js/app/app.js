@@ -148,12 +148,12 @@ var startApp = function() {
 	// $.mobile.listview.prototype.options.theme = "c";
 	console.log('** App Started **');
 	
-	var scrolltoid = 0;
+	var lastscrollpos = 0;
 	$('#home').live('pageshow', function(event){
-		if(scrolltoid) {
-			console.log("scrolling to: ", $('li:jqmData(noteid='+scrolltoid+')').offset().top)
-			$.mobile.silentScroll($('li:jqmData(noteid='+scrolltoid+')').offset().top);
-			scrolltoid = 0;
+		if(lastscrollpos) {
+			console.log("scrolling to: ", lastscrollpos)
+			$.mobile.silentScroll(lastscrollpos);
+			lastscrollpos = 0;
 		}
 	});
 	
@@ -199,7 +199,8 @@ var startApp = function() {
 		var html = template( data );
 		$("#detail :jqmData(role='content')").empty();
 		$("#detail :jqmData(role='content')").append(html);
-		scrolltoid	= $(this).data('noteid');
+		lastscrollpos = $('body').scrollTop();
+		console.log("last scrollpos: ", lastscrollpos);
 	});
 	
 	$("#deleteStorage").live("tap", function() {
