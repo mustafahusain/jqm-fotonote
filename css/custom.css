@@ -14,6 +14,11 @@
 
 .ui-icon-myapp-camera {
 	background-image: url(../img/app-icon-camera.png);
+	background-size: 18px 18px;
+}
+.ui-icon-myapp-skullbones {
+	background-image: url(../img/app-icon-skull-n-bones.png);
+	background-size: 18px 18px;
 }
 
 .well {

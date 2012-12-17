@@ -64,9 +64,9 @@
 		<div data-role="footer" data-position="fixed" data-id="thefooternav">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#info" data-icon="info" data-transition="flip">Info</a></li>
+					<li><a href="#info" data-icon="info" data-transition="flip">About</a></li>
 					<li><a href="#" data-icon="star">Favs</a></li>
-					<li><a href="#" data-icon="gear">Setup</a></li>
+					<li><a href="#settings" data-icon="gear" data-transition="slideup">Settings</a></li>
 				</ul>
 			</div>
     	</div><!-- /footer -->
@@ -140,9 +140,38 @@
 			<div data-role="header" data-theme="a" class="ui-corner-top">
 				<h1>Source</h1>
 			</div>
-			<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">				
+			<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
 				<a id="takePhotoButton" data-role="button" data-theme="b">Camera</a>    
 				<a id="takeLibPhotoButton" data-role="button" data-theme="b">Choose Existing Picture</a>  
+			</div>
+		</div>
+	</div>
+	
+	<div data-role="page" id="settings">
+		<div data-role="header" data-position="fixed">
+			<h1>Settings</h1>
+			<a href="#home" data-icon="home" class="ui-btn-left" data-transition="slideup" data-direction="reverse">Home</a>
+		</div>
+
+		<div data-role="content" class="ui-body-text">
+			<div style="text-align:center">
+				<a href="#clearStoragePopup" data-transition="slideup" data-role="button" data-theme="e" data-icon="myapp-skullbones" data-inline="true" data-rel="popup" data-position-to="window">Clear Local Storage</a>
+			</div>
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Masti Inc. Copyright 2012.</h4>
+		</div>
+		
+		<div data-role="popup" id="clearStoragePopup" data-overlay-theme="a" data-theme="c" style="max-width:400px;" class="ui-corner-all">
+			<div data-role="header" data-theme="a" class="ui-corner-top">
+				<h1>Delete Storage?</h1>
+			</div>
+			<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content"> 
+				<h3 class="ui-title">Are you sure you want to delete localStorage?</h3>
+				<p>This action cannot be undone.</p>
+				<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c">Cancel</a>    
+				<a id="deleteStorage" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b">Delete</a>
 			</div>
 		</div>
 	</div>

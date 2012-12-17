@@ -22,11 +22,11 @@ var Notes = {
 		this.attachTemplate();			
 	},
 	
-	placeholderPhotoNote : [{
+	placeholderPhotoNote :[{
 							title:"No Entry Found",
 							imgurl:"img/logo.png",
 							comment :"Add Photos please?"
-						   }]
+						  }]
 }
 	
 $('#home').live('pageinit', function(event){
@@ -123,7 +123,7 @@ function hasInStorage(id){
 
 // ** Utilities **
 
-function getPamarByName(url, paramName) {
+function getParamByName(url, paramName) {
 	var strGET = url.substr(url.indexOf('?')+1,url.length - url.indexOf('?')); 
 	var arrGET = strGET.split("&"); 
 	var paramValue = '';
@@ -202,4 +202,10 @@ var startApp = function() {
 		scrolltoid	= $(this).data('noteid');
 	});
 	
+	$("#deleteStorage").live("tap", function() {
+		console.log('** deleteStorage **');
+		window.localStorage.clear();
+		$("#clearStoragePopup").popup( "close" );
+		refreshPhotoListData();
+    });
 };
